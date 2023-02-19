@@ -7,7 +7,6 @@ import { Home } from './components/pages';
 
 
 function App() {
-  const check = Home;
   return (
     <div className="App">
       <Routes>

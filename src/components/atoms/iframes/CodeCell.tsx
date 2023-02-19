@@ -1,7 +1,5 @@
 import React from 'react';
 
-type IframeProps = React.HTMLProps<HTMLIFrameElement>;
-
 interface ICodeCellIframe {
   ref?: React.MutableRefObject<HTMLIFrameElement | null>
   sandbox?: string,
