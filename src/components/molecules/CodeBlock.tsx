@@ -32,6 +32,9 @@ const CodeBlock: React.FC = (props) => {
 
   const handleButtonClick = async () => {
     if (!esBuildRef.current) return;
+
+    codeCellRef.current.srcdoc = codeExecutionHtml;
+
     const result = await esbuild.build({
       entryPoints: ['index.js'],
       bundle: true,
@@ -49,7 +52,7 @@ const CodeBlock: React.FC = (props) => {
     codeCellRef.current.contentWindow.postMessage(result.outputFiles[0].text, '*')
   }
 
-  const html = `
+  const codeExecutionHtml = `
     <html>
       <head>
       </head>
@@ -57,7 +60,14 @@ const CodeBlock: React.FC = (props) => {
         <div id = 'root'> </div>
           <script> 
             window.addEventListener("message", (event) => {
-                eval(event.data);
+                try{
+                  eval(event.data);
+                }
+                catch(err){
+                  const root = document.querySelector('#root');
+                  root.innerHTML = '<div style = "color:red;" > <h4> Runtime Error </h4> <p>' +  err + ' </p> </div>'; 
+                  console.error(err);
+                }
             },false)
           </script
       </body>
@@ -69,7 +79,7 @@ const CodeBlock: React.FC = (props) => {
       <BasicH1 content = 'Test your code' />
       <CodeInputTextArea value={input} onChange={handleInput}/>
       <SubmitButton onClick={handleButtonClick}/>
-      <CodeCellDisplay ref={codeCellRef} srcDoc={html} sandbox={'allow-scripts'}/>
+      <CodeCellDisplay ref={codeCellRef} srcDoc={codeExecutionHtml} sandbox={'allow-scripts'}/>
     </div>
   )
 }
