@@ -14,6 +14,7 @@ const CodeCellIframe = React.forwardRef<HTMLIFrameElement, ICodeCellIframe>((pro
   return (
     <div> 
       <iframe 
+        title = 'Code Preview'
         ref = {ref}
         sandbox = {props.sandbox}  
         src = {props.src}
