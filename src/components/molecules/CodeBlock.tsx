@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, MutableRefObject } from 'react';
 import * as esbuild from 'esbuild-wasm';
 import CodeInputTextArea from '../atoms/TextArea/CodeInputTextArea';
-import CodeCellDisplay from '../atoms/Iframes/CodeCell';
+import CodeCellDisplay from '../atoms/IFrames/CodeCell';
 import BasicH1 from '../atoms/Headings/BasicH1';
 import SubmitButton from '../atoms/Buttons/SubmitButton';
 import { unpkgPathPlugin } from '../../helpers/unpkgPlugins/plugins/unpkgPlugin';
