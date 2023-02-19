@@ -1,11 +1,11 @@
 import React from 'react';
 
-interface ICodeInputTextArea {
+interface ICodeInputTextArea  {
   value?: any,
-  onChange?: React.ChangeEventHandler<HTMLTextAreaElement> 
+  onChange(event: React.ChangeEvent<HTMLTextAreaElement>): void,
 }
 
-const CodeInputTextArea: React.FC = (props: ICodeInputTextArea) => {
+const CodeInputTextArea: React.FC<ICodeInputTextArea> = (props) => {
 
   return (
     <div>

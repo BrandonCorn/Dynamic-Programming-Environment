@@ -1,5 +1,5 @@
 import React from 'react';
-import CodeBlock from '../organisms/CodeBlock';
+import CodeBlock from '../molecules/CodeBlock';
 
 const Home: React.FC = (props) => {
   return (
