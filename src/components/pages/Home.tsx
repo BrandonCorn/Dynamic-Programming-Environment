@@ -1,10 +1,10 @@
 import React from 'react';
-import CodeBlock from '../molecules/CodeBlock';
+import HomeTemplate from '../template/Home';
 
 const Home: React.FC = (props) => {
   return (
     <div>
-      <CodeBlock />
+      <HomeTemplate />
     </div>
   )
 }

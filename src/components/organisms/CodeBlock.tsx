@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import * as esbuild from 'esbuild-wasm';
+import CodeEditor from '../molecules/CodeEditor';
 import CodeInputTextArea from '../atoms/TextArea/CodeInputTextArea';
 import CodeCellDisplay from '../atoms/IFrames/CodeCell';
 import BasicH1 from '../atoms/Headings/BasicH1';
@@ -66,7 +67,6 @@ const CodeBlock: React.FC = (props) => {
                 catch(err){
                   const root = document.querySelector('#root');
                   root.innerHTML = '<div style = "color:red;" > <h4> Runtime Error </h4> <p>' +  err + ' </p> </div>'; 
-                  console.error(err);
                 }
             },false)
           </script
@@ -77,7 +77,22 @@ const CodeBlock: React.FC = (props) => {
   return (
     <div>
       <BasicH1 content = 'Test your code' />
-      <CodeInputTextArea value={input} onChange={handleInput}/>
+      <CodeEditor 
+        initialValue ={'const a = 1;'} 
+        onChange={(value) => setInput(value)}
+        language = {'javascript'} 
+        height={'300px'} 
+        options={{
+          wordWrap: 'on',
+          minimap: { enabled: false},
+          folding: false,
+          lineNumbersMinChars: 3,
+          fontSize: 16,
+          scrollBeyondLastLine: false,
+          automaticLayout: true,
+        }}
+        /> 
+        {/* <CodeInputTextArea value={input} onChange={(event) => setInput(event.target.value)}/> */}
       <SubmitButton onClick={handleButtonClick}/>
       <CodeCellDisplay ref={codeCellRef} srcDoc={codeExecutionHtml} sandbox={'allow-scripts'}/>
     </div>
