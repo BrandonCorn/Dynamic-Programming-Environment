@@ -1,5 +1,5 @@
 import React from 'react';
-import CodeBlock from '../organisms/CodeBlock';
+import CodeBlock from '../../organisms/CodeBlock/CodeBlock';
 
 const HomeTemplate: React.FC = (props) => {
   return (

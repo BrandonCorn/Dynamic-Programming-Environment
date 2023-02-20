@@ -1,12 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import * as esbuild from 'esbuild-wasm';
-import CodeEditor from '../molecules/CodeEditor';
-import CodeInputTextArea from '../atoms/TextArea/CodeInputTextArea';
-import CodeCellDisplay from '../atoms/IFrames/CodeCell';
-import BasicH1 from '../atoms/Headings/BasicH1';
-import SubmitButton from '../atoms/Buttons/SubmitButton';
-import { unpkgPathPlugin } from '../../helpers/unpkgPlugins/plugins/unpkgPlugin';
-import { fetchPlugin } from '../../helpers/unpkgPlugins/plugins/fetchPlugin';
+import CodeEditor from '../../molecules/CodeEditor/CodeEditor';
+import CodeCellDisplay from '../../atoms/IFrames/CodeCell/CodeCell';
+import SubmitButton from '../../atoms/Buttons/SubmitButton/SubmitButton';
+import { unpkgPathPlugin } from '../../../helpers/unpkgPlugins/plugins/unpkgPlugin';
+import { fetchPlugin } from '../../../helpers/unpkgPlugins/plugins/fetchPlugin';
 
 const CodeBlock: React.FC = (props) => {
   const [input, setInput] = useState('');
@@ -26,9 +24,8 @@ const CodeBlock: React.FC = (props) => {
     startService();
   },[]);
 
-  const handleInput = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const data = event.target.value;
-    setInput(data);
+  const handleInput = (value:string) => {
+    setInput(value);
   }
 
   const handleButtonClick = async () => {
@@ -76,10 +73,9 @@ const CodeBlock: React.FC = (props) => {
 
   return (
     <div>
-      <BasicH1 content = 'Test your code' />
       <CodeEditor 
         initialValue ={'const a = 1;'} 
-        onChange={(value) => setInput(value)}
+        onChange={handleInput}
         language = {'javascript'} 
         height={'300px'} 
         options={{
@@ -92,7 +88,6 @@ const CodeBlock: React.FC = (props) => {
           automaticLayout: true,
         }}
         /> 
-        {/* <CodeInputTextArea value={input} onChange={(event) => setInput(event.target.value)}/> */}
       <SubmitButton onClick={handleButtonClick}/>
       <CodeCellDisplay ref={codeCellRef} srcDoc={codeExecutionHtml} sandbox={'allow-scripts'}/>
     </div>

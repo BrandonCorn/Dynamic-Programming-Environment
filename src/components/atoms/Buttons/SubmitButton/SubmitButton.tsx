@@ -1,12 +1,14 @@
 import React from 'react';
 
 interface ISubmitButton {
-  onClick: React.MouseEventHandler<HTMLButtonElement>
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 const SubmitButton: React.FC<ISubmitButton> = (props) => {
   return (
-    <button onClick={props.onClick} > Submit </button>
+    <button onClick={props.onClick}> 
+      Submit 
+    </button>
   )
 }
 
