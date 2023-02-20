@@ -1,10 +1,10 @@
 import * as esbuild from 'esbuild-wasm';
-import { fetchPlugin } from "../unpkgPlugins/plugins/fetchPlugin";
-import { unpkgPathPlugin } from "../unpkgPlugins/plugins/unpkgPlugin";
+import { fetchPlugin } from "./unpkgPlugins/plugins/fetchPlugin";
+import { unpkgPathPlugin } from "./unpkgPlugins/plugins/unpkgPlugin";
 
 let service = false;
 
-export default async (code: string) => {
+const bundle =  async (code: string) => {
   if (service) return;
   //initialize esbuild if not done so
   await esbuild.initialize({
@@ -30,3 +30,5 @@ export default async (code: string) => {
 
   return result.outputFiles[0].text;
 }
+
+export default bundle;
