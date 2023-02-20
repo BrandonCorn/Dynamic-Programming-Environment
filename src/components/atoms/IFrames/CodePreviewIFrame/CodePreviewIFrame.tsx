@@ -30,8 +30,11 @@ const CodePreview:  React.FC<ICodePreview> = (props) => {
 
   useEffect(() => {
     ref.current.srcdoc = codeExecutionHtml;
-    ref.current.contentWindow.postMessage(code, '*');
   }, [code]); 
+
+  const loadHandler = () => {
+    ref.current.contentWindow.postMessage(code, '*');
+  }
 
 
   return (
@@ -41,6 +44,7 @@ const CodePreview:  React.FC<ICodePreview> = (props) => {
         ref = {ref}
         sandbox = 'allow-scripts'  
         srcDoc = {codeExecutionHtml}
+        onLoad={loadHandler}
       />
     </div>
   )
