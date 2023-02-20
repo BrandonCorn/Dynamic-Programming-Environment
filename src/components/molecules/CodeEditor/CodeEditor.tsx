@@ -55,7 +55,7 @@ const CodeEditor: React.FC<ICodeEditor> = (props) => {
         theme={theme || 'dark'} 
         value={initialValue} 
         language={language || 'javascript'} 
-        height={height || '300px'}
+        height={height || '100%'}
         options={options || defaultOptions}
       />
     </div>
