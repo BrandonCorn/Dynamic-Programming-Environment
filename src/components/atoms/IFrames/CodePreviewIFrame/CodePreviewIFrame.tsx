@@ -1,4 +1,4 @@
-import './codePreview.css';
+import './code-preview.css';
 import React, { useEffect, useRef } from 'react';
 
 interface ICodePreview {

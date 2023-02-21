@@ -20,14 +20,16 @@ const CodeBlock: React.FC = (props) => {
   }
 
   return (
-    <Resizable direction='vertical' height={300} >
-    <div style = {{height: '100%', display: 'flex', flexDirection: 'row'}}>
-        <CodeEditor 
-          initialValue ={'const a = 1;'} 
-          onChange={handleInput}
-          /> 
-        <CodePreview code={code} />
-    </div>
+    <Resizable direction='vertical'>
+      <div style={{height: '100%', display: 'flex', flexDirection: 'row'}}>
+        <Resizable direction='horizontal'>
+          <CodeEditor 
+            initialValue ={'const a = 1;'} 
+            onChange={handleInput}
+          />
+        </Resizable>
+          <CodePreview code={code} />
+      </div>
     </Resizable>
   )
 }

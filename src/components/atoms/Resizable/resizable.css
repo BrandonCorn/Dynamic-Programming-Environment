@@ -3,7 +3,11 @@
   background-color: #37414b;
   background-repeat: no-repeat;
   background-position: 50%;
-  width: 100%;
+}
+
+.resize-horizontal {
+  display: flex;
+  flex-direction: 'row';
 }
  
 .react-resizable-handle-s {
