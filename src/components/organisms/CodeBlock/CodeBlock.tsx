@@ -23,7 +23,7 @@ const CodeBlock: React.FC = (props) => {
     const timer = setTimeout(async () => {
       const bundledCode = await bundle(input);
       if (bundledCode) setCode(bundledCode);
-    }, 1000);
+    }, 2000);
 
     return () => {
       clearTimeout(timer);
