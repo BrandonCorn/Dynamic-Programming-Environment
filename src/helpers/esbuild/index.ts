@@ -5,13 +5,14 @@ import { unpkgPathPlugin } from "./unpkgPlugins/plugins/unpkgPlugin";
 let service = false;
 
 const bundle =  async (code: string) => {
-  if (service) return;
-  //initialize esbuild if not done so
-  await esbuild.initialize({
-    worker: true,
-    wasmURL: 'https://unpkg.com/esbuild-wasm@0.17.8/esbuild.wasm'
-  });
-  service = true;
+  if (!service){
+    //initialize esbuild if not done so
+    await esbuild.initialize({
+      worker: true,
+      wasmURL: 'https://unpkg.com/esbuild-wasm@0.17.8/esbuild.wasm'
+    });
+    service = true;
+  }
 
   //grab the result of bundling code from user input
   const result = await esbuild.build({
