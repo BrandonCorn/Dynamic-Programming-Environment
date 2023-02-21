@@ -2,12 +2,14 @@ import './code-preview.css';
 import React, { useEffect, useRef } from 'react';
 
 interface ICodePreview {
-  code?: string,
+  code: string;
+  bundleStatus: string;
 }
 
-const CodePreview:  React.FC<ICodePreview> = (props) => {
-  const { code } = props;
+const CodePreview:  React.FC<ICodePreview> = ({ code, bundleStatus}) => {
   const ref = useRef<any>();
+
+
   const codeExecutionHtml = `
     <html>
       <head>
@@ -57,6 +59,12 @@ const CodePreview:  React.FC<ICodePreview> = (props) => {
         srcDoc = {codeExecutionHtml}
         onLoad={loadHandler}
       />
+      {bundleStatus && (
+        <div className='code-preview-error'>
+          <h4> Runtime Error </h4>
+          <p> {bundleStatus} </p>
+        </div>
+      )}
     </div>
   )
 }

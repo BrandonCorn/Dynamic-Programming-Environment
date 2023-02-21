@@ -8,21 +8,18 @@ import Resizable from '../../atoms/Resizable/Resizable';
 const CodeBlock: React.FC = (props) => {
   const [input, setInput] = useState('');
   const [code, setCode] = useState('');
+  const [err, setErr] = useState('');
 
 
   const handleInput = (value:string) => {
     setInput(value);
   }
 
-  const handleButtonClick = async () => {
-    const bundledCode = await bundle(input);
-    if (bundledCode) setCode(bundledCode);
-  }
-
   useEffect(() => {
     const timer = setTimeout(async () => {
       const bundledCode = await bundle(input);
-      if (bundledCode) setCode(bundledCode);
+      setCode(bundledCode.code);
+      setErr(bundledCode.error);
     }, 2000);
 
     return () => {
@@ -39,7 +36,7 @@ const CodeBlock: React.FC = (props) => {
             onChange={handleInput}
           />
         </Resizable>
-          <CodePreview code={code} />
+          <CodePreview code={code} bundleStatus={err} />
       </div>
     </Resizable>
   )
