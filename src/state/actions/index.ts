@@ -1,1 +1,1 @@
-export * from './cellActions';
+export * from './cells';

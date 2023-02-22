@@ -1,1 +1,1 @@
-export * from './cellActionTypes';
+export * from './cells';
