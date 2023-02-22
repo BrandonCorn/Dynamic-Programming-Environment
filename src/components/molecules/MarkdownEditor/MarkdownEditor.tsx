@@ -1,3 +1,4 @@
+import './markdown-editor.css';
 import React, { useState, useEffect, useRef } from 'react';
 import MDEditor from '@uiw/react-md-editor';
 
@@ -22,14 +23,14 @@ const MarkdownEditor: React.FC = () => {
   const editOrPreview = () => {
     if (editing){
       return (
-        <div>
+        <div className='markdown-editor card-content'>
           <MDEditor value={input} onChange={handleInput} />
         </div>
       )
     }
     else{
       return (
-        <div onClick={handleEditing}>
+        <div className='markdown-editor card-content' onClick={handleEditing}>
           <MDEditor.Markdown source={input} />
         </div>
       )
@@ -52,7 +53,7 @@ const MarkdownEditor: React.FC = () => {
   },[])
 
   return (
-    <div ref={editorRef}>
+    <div className='card'  ref={editorRef}>
       {editOrPreview()}
     </div>
   )
