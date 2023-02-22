@@ -5,7 +5,7 @@ import SubmitButton from '../../atoms/Buttons/SubmitButton/SubmitButton';
 import bundle from '../../../helpers/esbuild';
 import Resizable from '../../atoms/Resizable/Resizable';
 
-const CodeBlock: React.FC = (props) => {
+const CodeCell: React.FC = (props) => {
   const [input, setInput] = useState('');
   const [code, setCode] = useState('');
   const [err, setErr] = useState('');
@@ -42,4 +42,4 @@ const CodeBlock: React.FC = (props) => {
   )
 }
 
-export default CodeBlock;
+export default CodeCell;

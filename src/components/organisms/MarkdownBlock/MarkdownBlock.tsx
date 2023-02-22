@@ -1,10 +1,10 @@
 import React from 'react';
 import MarkdownEditor from '../../molecules/MarkdownEditor/MarkdownEditor';
 
-const MarkdownBlock: React.FC = () => {
+const MarkdownCell: React.FC = () => {
   return (
     <MarkdownEditor />
   )
 }
 
-export default MarkdownBlock;
+export default MarkdownCell;
