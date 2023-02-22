@@ -41,12 +41,12 @@ const Resizable: React.FC<IResizable> = ({direction, width, height, resizeHandle
     let timer: any;
     const listener = () => {
     if (timer) clearTimeout(timer);
-      timer = setTimeout(() => {
-        setInnerWidth(window.innerWidth);
-        setInnerHeight(window.innerHeight);
-        if (window.innerWidth * 0.75 < mWidth){
-          setMWidth(window.innerWidth * 0.75);
-        }
+    timer = setTimeout(() => {
+      setInnerWidth(window.innerWidth);
+      setInnerHeight(window.innerHeight);
+      if (window.innerWidth * 0.75 < mWidth){
+        setMWidth(window.innerWidth * 0.75);
+      }
       }, 100);
     }
     window.addEventListener('resize', listener);
