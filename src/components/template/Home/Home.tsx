@@ -1,6 +1,6 @@
 import React from 'react';
 import CodeCell from '../../organisms/CodeCell/CodeCell';
-import MarkdownCell from '../../organisms/MarkdownBlock/MarkdownBlock';
+import MarkdownCell from '../../organisms/MarkdownCell/MarkdownCell';
 
 const HomeTemplate: React.FC = (props) => {
   return (

@@ -25,9 +25,7 @@ export const moveCell = (id: string, direction: CellDirection): MoveCellAction =
 export const deleteCell = (id: string): DeleteCellAction => {
   return {
     type: CellActionTypes.DELETE_CELL,
-    payload: {
-      id,
-    }
+    payload: id
   }
 }
 

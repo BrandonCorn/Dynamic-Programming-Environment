@@ -21,15 +21,13 @@ export interface MoveCellAction {
 
 export interface DeleteCellAction { 
   type: CellActionTypes.DELETE_CELL;
-  payload: {
-    id: string;
-  }
+  payload: string;
 }
 
 export interface InsertCellBeforeAction {
   type: CellActionTypes.INSERT_CELL_BEFORE;
   payload: {
-    id: string;
+    id: string | null;
     type: CellTypes
   }
 }
