@@ -1,16 +1,12 @@
 import React from 'react';
-import CodeCell from '../../organisms/CodeCell/CodeCell';
-import MarkdownCell from '../../organisms/MarkdownCell/MarkdownCell';
+// import CodeCell from '../../organisms/CodeCell/CodeCell';
+// import MarkdownCell from '../../organisms/MarkdownCell/MarkdownCell';
+import CellList from '../../organisms/CellList/CellList';
 
 const HomeTemplate: React.FC = (props) => {
   return (
     <div>
-      <div style = {{margin: '25px'}}>
-        <MarkdownCell />
-      </div>
-      <div style={{margin: '25px'}}>
-        {/* <CodeCell /> */}
-      </div>
+      <CellList />
     </div>
   )
 }

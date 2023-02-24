@@ -101,6 +101,6 @@ const reducer = produce((
     default: 
       return state;
   }
-});
+}, initialState);
 
 export default reducer;

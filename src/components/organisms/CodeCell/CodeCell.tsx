@@ -4,6 +4,11 @@ import CodePreview from '../../atoms/IFrames/CodePreviewIFrame/CodePreviewIFrame
 import SubmitButton from '../../atoms/Buttons/SubmitButton/SubmitButton';
 import bundle from '../../../helpers/esbuild';
 import Resizable from '../../atoms/Resizable/Resizable';
+import { ICell } from '../../../state/cell';
+
+interface ICodeCell {
+  cell: ICell
+}
 
 const CodeCell: React.FC = (props) => {
   const [input, setInput] = useState('');
