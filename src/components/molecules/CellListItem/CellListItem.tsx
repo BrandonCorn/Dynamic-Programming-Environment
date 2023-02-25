@@ -29,7 +29,6 @@ const CellListItem: React.FC<ICellListItem> = ({ cell }) => {
   return (
     <div className='cell-list-item'>
       {child}
-      
     </div>
   )
 }
