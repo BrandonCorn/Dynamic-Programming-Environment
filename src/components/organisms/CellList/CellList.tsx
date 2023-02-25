@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
-import MarkdownCell from '../MarkdownCell/MarkdownCell';
-import CodeCell from '../CodeCell/CodeCell';
+import CellListItem from '../../molecules/CellListItem/CellListItem';
 
 const CellList: React.FC = () => {
   const cellState = useTypedSelector(({ cells: { order, data } }) => {
@@ -10,18 +9,24 @@ const CellList: React.FC = () => {
 
   const buildList = () => {
     return cellState.map(cell => {
-      if (cell.type === 'code') {
-        return (
-        <div style = {{margin: '25px'}}> 
-          <CodeCell key ={cell.id} cell={cell}/> 
-        </div>
-        )
-      }
-      else if (cell.type === 'markdown') {
-        return <MarkdownCell key={cell.id} cell={cell}/>
-      }
+      return <CellListItem key={cell.id} cell={cell} />
     })
   }
+
+  // const buildList = () => {
+  //   return cellState.map(cell => {
+  //     if (cell.type === 'code') {
+  //       return (
+  //       <div key ={cell.id} style = {{margin: '25px'}}> 
+  //         <CodeCell cell={cell}/> 
+  //       </div>
+  //       )
+  //     }
+  //     else if (cell.type === 'markdown') {
+  //       return <MarkdownCell key={cell.id} cell={cell}/>
+  //     }
+  //   })
+  // }
 
   useEffect(() => {
 
