@@ -4,6 +4,10 @@
   font-weight: unset !important;
 }
 
+.wmde-markdown {
+  background-color: unset !important;
+}
+
 .markdown-editor .w-md-editor-bar svg {
   display: none;
 }

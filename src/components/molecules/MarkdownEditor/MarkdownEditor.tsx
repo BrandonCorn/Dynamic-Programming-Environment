@@ -43,6 +43,7 @@ const MarkdownEditor: React.FC<IMarkdownEditor> = ({ cell }) => {
     }
   }
 
+
   useEffect(() => {
     const listener = (event: MouseEvent) => {
       if (editorRef.current && event.target && editorRef.current.contains(event.target as Node)){
