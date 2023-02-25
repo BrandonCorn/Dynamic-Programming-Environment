@@ -1,5 +1,5 @@
 import './markdown-editor.css';
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import MDEditor from '@uiw/react-md-editor';
 import { useAction } from '../../../hooks/useAction';
 import { ICell } from '../../../state';

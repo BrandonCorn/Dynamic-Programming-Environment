@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface ICodeInputTextArea  {
   value?: any,
   onChange(event: React.ChangeEvent<HTMLTextAreaElement>): void,

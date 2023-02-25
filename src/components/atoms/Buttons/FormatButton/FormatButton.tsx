@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface IFormatButton {
   onClick: React.MouseEventHandler<HTMLButtonElement>;
 }

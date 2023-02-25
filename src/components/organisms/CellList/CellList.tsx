@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import MarkdownCell from '../MarkdownCell/MarkdownCell';
 import CodeCell from '../CodeCell/CodeCell';

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import CodeEditor from '../../molecules/CodeEditor/CodeEditor';
 import CodePreview from '../../atoms/IFrames/CodePreviewIFrame/CodePreviewIFrame';
 import bundle from '../../../helpers/esbuild';
@@ -11,7 +11,7 @@ interface ICodeCell {
 }
 
 const CodeCell: React.FC<ICodeCell> = ({cell}) => {
-  const { id, type, content } = cell;
+  const { id, content } = cell;
   const { updateCell } = useAction();
   const [code, setCode] = useState('');
   const [err, setErr] = useState('');

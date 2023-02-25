@@ -1,4 +1,3 @@
-import React from 'react';
 import { ICell } from '../../../state';
 import MarkdownEditor from '../../molecules/MarkdownEditor/MarkdownEditor';
 

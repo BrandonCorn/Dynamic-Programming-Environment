@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface IBasicH1 {
   content: string
 }

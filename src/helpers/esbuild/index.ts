@@ -5,7 +5,6 @@ import { unpkgPathPlugin } from "./unpkgPlugins/plugins/unpkgPlugin";
 let service = false;
 
 const bundle =  async (code: string) => {
-  console.log('got a code ', service);
   if (!service){
     //initialize esbuild if not done so
     await esbuild.initialize({
