@@ -1,28 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import CodeEditor from '../../molecules/CodeEditor/CodeEditor';
 import CodePreview from '../../atoms/IFrames/CodePreviewIFrame/CodePreviewIFrame';
-import SubmitButton from '../../atoms/Buttons/SubmitButton/SubmitButton';
 import bundle from '../../../helpers/esbuild';
 import Resizable from '../../atoms/Resizable/Resizable';
 import { ICell } from '../../../state/cell';
+import { useAction } from '../../../hooks/useAction';
 
 interface ICodeCell {
   cell: ICell
 }
 
-const CodeCell: React.FC = (props) => {
-  const [input, setInput] = useState('');
+const CodeCell: React.FC<ICodeCell> = ({cell}) => {
+  const { id, type, content } = cell;
+  const { updateCell } = useAction();
   const [code, setCode] = useState('');
   const [err, setErr] = useState('');
 
 
   const handleInput = (value:string) => {
-    setInput(value);
+    updateCell(id, value);
   }
 
   useEffect(() => {
     const timer = setTimeout(async () => {
-      const bundledCode = await bundle(input);
+      const bundledCode = await bundle(content);
       setCode(bundledCode.code);
       setErr(bundledCode.error);
     }, 2000);
@@ -30,14 +31,14 @@ const CodeCell: React.FC = (props) => {
     return () => {
       clearTimeout(timer);
     }
-  }, [input])
+  }, [content])
 
   return (
     <Resizable direction='vertical'>
       <div style={{height: '100%', display: 'flex', flexDirection: 'row'}}>
         <Resizable direction='horizontal'>
           <CodeEditor 
-            initialValue ={'const a = 1;'} 
+            initialValue ={content} 
             onChange={handleInput}
           />
         </Resizable>

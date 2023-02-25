@@ -13,12 +13,12 @@ const CellList: React.FC = () => {
       if (cell.type === 'code') {
         return (
         <div style = {{margin: '25px'}}> 
-          <CodeCell key ={cell.id} /> 
+          <CodeCell key ={cell.id} cell={cell}/> 
         </div>
         )
       }
       else if (cell.type === 'markdown') {
-        return <MarkdownCell key={cell.id} />
+        return <MarkdownCell key={cell.id} cell={cell}/>
       }
     })
   }

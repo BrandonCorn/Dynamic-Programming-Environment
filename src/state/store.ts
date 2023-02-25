@@ -1,10 +1,11 @@
 import { useDispatch } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import reducers from './reducers';
 import { CellActionTypes } from './actionTypes';
 
-export const store = createStore(reducers, applyMiddleware(thunk));
+export const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)));
 
 export type RootState = ReturnType<typeof store.getState>
 
@@ -25,13 +26,6 @@ store.dispatch({
   }
 })
 
-store.dispatch({
-  type: CellActionTypes.INSERT_CELL_BEFORE,
-  payload: {
-    id: null,
-    type: 'code'
-  }
-});
 
 console.log('store ', store.getState());
 

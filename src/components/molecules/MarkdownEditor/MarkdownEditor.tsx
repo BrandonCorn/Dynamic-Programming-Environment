@@ -1,20 +1,25 @@
 import './markdown-editor.css';
 import React, { useState, useEffect, useRef } from 'react';
 import MDEditor from '@uiw/react-md-editor';
+import { useAction } from '../../../hooks/useAction';
+import { ICell } from '../../../state';
+
+interface IMarkdownEditor {
+  cell: ICell
+}
 
 
-const MarkdownEditor: React.FC = () => {
-  const [input, setInput] = useState('# Header');
-  const [editing, setEditing] = useState(true);
+const MarkdownEditor: React.FC<IMarkdownEditor> = ({ cell }) => {
+  const { id, content } = cell;
+  const { updateCell } = useAction();
+  const [editing, setEditing] = useState(false);
   const editorRef = useRef<HTMLDivElement | null>(null);
 
   const handleInput = (
     value: string | undefined, 
     event: React.ChangeEvent<HTMLTextAreaElement> | undefined
     ) => {
-    if (value) {
-      setInput(value);
-    }
+      updateCell(id, value || '');
   }
   
   const handleEditing = () => {
@@ -25,14 +30,14 @@ const MarkdownEditor: React.FC = () => {
     if (editing){
       return (
         <div className='markdown-editor card-content'>
-          <MDEditor value={input} onChange={handleInput} />
+          <MDEditor value={content} onChange={handleInput} />
         </div>
       )
     }
     else{
       return (
         <div className='markdown-editor card-content' onClick={handleEditing}>
-          <MDEditor.Markdown source={input} />
+          <MDEditor.Markdown source={content || 'Click to Edit'} />
         </div>
       )
     }
