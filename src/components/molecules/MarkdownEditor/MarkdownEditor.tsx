@@ -2,7 +2,6 @@ import './markdown-editor.css';
 import { useState, useEffect, useRef } from 'react';
 import MDEditor from '@uiw/react-md-editor';
 import { useAction } from '../../../hooks/useAction';
-import { ICell } from '../../../state';
 
 interface IMarkdownEditorProps {
   id: string;
