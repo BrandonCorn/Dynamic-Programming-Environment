@@ -6,11 +6,11 @@ import Resizable from '../../atoms/Resizable/Resizable';
 import { ICell } from '../../../state/cell';
 import { useAction } from '../../../hooks/useAction';
 
-interface ICodeCell {
+interface ICodeCellProps {
   cell: ICell
 }
 
-const CodeCell: React.FC<ICodeCell> = ({cell}) => {
+const CodeCell: React.FC<ICodeCellProps> = ({cell}) => {
   const { id, content } = cell;
   const { updateCell } = useAction();
   const [code, setCode] = useState('');

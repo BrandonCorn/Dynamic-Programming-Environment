@@ -4,13 +4,13 @@ import MDEditor from '@uiw/react-md-editor';
 import { useAction } from '../../../hooks/useAction';
 import { ICell } from '../../../state';
 
-interface IMarkdownEditor {
-  cell: ICell
+interface IMarkdownEditorProps {
+  id: string;
+  content: string;
 }
 
 
-const MarkdownEditor: React.FC<IMarkdownEditor> = ({ cell }) => {
-  const { id, content } = cell;
+const MarkdownEditor: React.FC<IMarkdownEditorProps> = ({ id, content }) => {
   const { updateCell } = useAction();
   const [editing, setEditing] = useState(false);
   const editorRef = useRef<HTMLDivElement | null>(null);

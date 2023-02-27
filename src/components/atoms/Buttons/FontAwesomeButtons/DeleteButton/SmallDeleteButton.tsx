@@ -1,8 +1,8 @@
-interface ISmallDeleteButton {
+interface ISmallDeleteButtonProps {
   onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-const SmallDeleteButton: React.FC<ISmallDeleteButton> = ({ onClick }) => {
+const SmallDeleteButton: React.FC<ISmallDeleteButtonProps> = ({ onClick }) => {
   return (
     <button className='button is-primary is-small' onClick={onClick}> 
       <span className='icon'>

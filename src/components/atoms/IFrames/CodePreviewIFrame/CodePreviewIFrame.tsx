@@ -1,12 +1,12 @@
 import './code-preview.css';
 import { useEffect, useRef } from 'react';
 
-interface ICodePreview {
+interface ICodePreviewProps {
   code: string;
   bundleStatus: string;
 }
 
-const CodePreview:  React.FC<ICodePreview> = ({ code, bundleStatus}) => {
+const CodePreview:  React.FC<ICodePreviewProps> = ({ code, bundleStatus}) => {
   const ref = useRef<any>();
 
 

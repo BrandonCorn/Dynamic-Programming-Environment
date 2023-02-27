@@ -1,8 +1,8 @@
-interface ISubmitButton {
+interface ISubmitButtonProps {
   onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-const SubmitButton: React.FC<ISubmitButton> = (props) => {
+const SubmitButton: React.FC<ISubmitButtonProps> = (props) => {
   return (
     <button onClick={props.onClick}> 
       Submit 

@@ -4,11 +4,11 @@ import SmallDeleteButton from "../../atoms/Buttons/FontAwesomeButtons/DeleteButt
 import SmallUpButton from "../../atoms/Buttons/FontAwesomeButtons/UpButton/SmallUpButton";
 import SmallDownButton from "../../atoms/Buttons/FontAwesomeButtons/DownButton/SmallDownButton";
 
-interface IActionBar {
+interface IActionBarProps {
   id: string;
 }
 
-const ActionBar: React.FC<IActionBar> = ({ id }) => {
+const ActionBar: React.FC<IActionBarProps> = ({ id }) => {
   const { moveCell, deleteCell } = useAction();
 
   const handleMoveCellUp = () => {

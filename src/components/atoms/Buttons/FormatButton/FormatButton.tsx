@@ -1,8 +1,8 @@
-interface IFormatButton {
+interface IFormatButtonProps {
   onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-const FormatButton: React.FC<IFormatButton> = (props) => {
+const FormatButton: React.FC<IFormatButtonProps> = (props) => {
   return (
     <button className='button button-format is-primary is-small' onClick={props.onClick}> 
       Format

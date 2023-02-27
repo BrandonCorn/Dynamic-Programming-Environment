@@ -5,7 +5,7 @@ import { ResizableBox, ResizableBoxProps, ResizeCallbackData } from 'react-resiz
 
 type ResizeHandleAxis = 's' | 'w' | 'n' | 'e' | 'sw' | 'se' | 'nw' | 'ne';
 
-interface IResizable {
+interface IResizableProps {
   children?: React.ReactNode;
   direction: 'horizontal' | 'vertical' | 'both';
   width?: number;
@@ -13,7 +13,7 @@ interface IResizable {
   resizeHandles?: Array<ResizeHandleAxis>;
 }
 
-const Resizable: React.FC<IResizable> = ({direction, width, height, resizeHandles, children}) => {
+const Resizable: React.FC<IResizableProps> = ({direction, width, height, resizeHandles, children}) => {
   const [innerWidth, setInnerWidth] = useState(window.innerWidth);
   const [innerHeight, setInnerHeight] = useState(window.innerHeight);
   const [mWidth, setMWidth] = useState(window.innerWidth * 0.75);

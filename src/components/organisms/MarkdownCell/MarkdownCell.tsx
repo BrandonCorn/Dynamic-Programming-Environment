@@ -1,13 +1,13 @@
 import { ICell } from '../../../state';
 import MarkdownEditor from '../../molecules/MarkdownEditor/MarkdownEditor';
 
-interface IMarkdownCell {
+interface IMarkdownCellProps {
   cell: ICell
 }
 
-const MarkdownCell: React.FC<IMarkdownCell> = ({ cell }) => {
+const MarkdownCell: React.FC<IMarkdownCellProps> = ({ cell }) => {
   return (
-    <MarkdownEditor cell={cell}/>
+    <MarkdownEditor id={cell.id} content={cell.content} />
   )
 }
 

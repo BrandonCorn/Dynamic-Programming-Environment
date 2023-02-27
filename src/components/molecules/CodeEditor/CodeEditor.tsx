@@ -6,12 +6,12 @@ import parser from 'prettier/parser-babel';
 import FormatButton from '../../atoms/Buttons/FormatButton/FormatButton';
 import editor from 'monaco-editor';
 
-interface ICodeEditor extends EditorProps {
+interface ICodeEditorProps extends EditorProps {
   initialValue: string;
   onChange(value: string): void;
 }
 
-const CodeEditor: React.FC<ICodeEditor> = (props) => {
+const CodeEditor: React.FC<ICodeEditorProps> = (props) => {
   const { initialValue, theme, language, height, options, onChange } = props;
   const editorRef = useRef<any>();
 

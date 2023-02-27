@@ -1,8 +1,8 @@
-interface IBasicH1 {
+interface IBasicH1Props {
   content: string
 }
 
-const BasicH1: React.FC<IBasicH1> = (props) => {
+const BasicH1: React.FC<IBasicH1Props> = (props) => {
   return (
     <h1> {props.content} </h1>
   )

@@ -13,21 +13,6 @@ const CellList: React.FC = () => {
     })
   }
 
-  // const buildList = () => {
-  //   return cellState.map(cell => {
-  //     if (cell.type === 'code') {
-  //       return (
-  //       <div key ={cell.id} style = {{margin: '25px'}}> 
-  //         <CodeCell cell={cell}/> 
-  //       </div>
-  //       )
-  //     }
-  //     else if (cell.type === 'markdown') {
-  //       return <MarkdownCell key={cell.id} cell={cell}/>
-  //     }
-  //   })
-  // }
-
   useEffect(() => {
 
   },[cellState])

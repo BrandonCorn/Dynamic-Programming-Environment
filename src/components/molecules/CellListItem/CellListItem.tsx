@@ -4,11 +4,11 @@ import MarkdownCell from "../../organisms/MarkdownCell/MarkdownCell";
 import CodeCell from '../../organisms/CodeCell/CodeCell';
 import ActionBar from "../ActionBar/ActionBar";
 
-interface ICellListItem {
+interface ICellListItemProps {
   cell: ICell
 }
 
-const CellListItem: React.FC<ICellListItem> = ({ cell }) => {
+const CellListItem: React.FC<ICellListItemProps> = ({ cell }) => {
   let child: JSX.Element;
   if (cell.type === 'code') {
     child = <>

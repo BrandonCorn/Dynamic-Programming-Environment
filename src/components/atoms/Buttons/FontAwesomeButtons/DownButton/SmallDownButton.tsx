@@ -1,8 +1,8 @@
-interface ISmallDownButton {
+interface ISmallDownButtonProps {
   onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-const SmallDownButton: React.FC<ISmallDownButton> = ({ onClick }) => {
+const SmallDownButton: React.FC<ISmallDownButtonProps> = ({ onClick }) => {
   return (
     <button className='button is-primary is-small' onClick={onClick}> 
       <span className='icon'>
