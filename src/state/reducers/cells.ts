@@ -1,6 +1,6 @@
 import { CellActionTypes } from '../actionTypes';
 import { CellActions,
-   InsertCellBeforeAction,
+   InsertCellAfterAction,
     DeleteCellAction, MoveCellAction, UpdateCellAction } from '../actions';
 import { ICell, generateCellId } from '../cell';
 import { produce } from 'immer';
@@ -58,9 +58,9 @@ const moveCell = (
 }
 
 //create new cell in specific space of order list or else place at the end of the order list
-const insertBeforeCell = (
+const insertAfterCell = (
   state: ICellState,
-  action: InsertCellBeforeAction
+  action: InsertCellAfterAction
 ): ICellState | void => {
   const { id } = action.payload;
   const cell = {
@@ -71,8 +71,8 @@ const insertBeforeCell = (
 
   state.data[cell.id] = cell;
   let newIndex = state.order.findIndex((cellId) => cellId === id);
-  if (newIndex < 0) state.order.push(cell.id);
-  else if (newIndex > 0) state.order.splice(newIndex, 0, cell.id);
+  if (newIndex < 0) state.order.unshift(cell.id);
+  else if (newIndex >= 0) state.order.splice(newIndex+1, 0, cell.id);
 
   return state;
 }
@@ -95,8 +95,8 @@ const reducer = produce((
       moveCell(state, action);
       return state;
 
-    case CellActionTypes.INSERT_CELL_BEFORE:
-      insertBeforeCell(state, action);
+    case CellActionTypes.INSERT_CELL_AFTER:
+      insertAfterCell(state, action);
       return state;
     default: 
       return state;

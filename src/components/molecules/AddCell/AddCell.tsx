@@ -3,18 +3,18 @@ import { useAction} from "../../../hooks/useAction";
 import GenericButton from "../../atoms/Buttons/GenericButton/GenericButton";
 
 interface IAddCellProps {
-  nextCellId: string | null;
+  prevCellId: string | null;
 }
 
-const AddCell: React.FC<IAddCellProps> = ({nextCellId}) => {
-  const {insertBeforeCell } = useAction();
+const AddCell: React.FC<IAddCellProps> = ({prevCellId}) => {
+  const {insertAfterCell } = useAction();
   
   const handleClickCode = (event: React.MouseEvent<HTMLButtonElement>) => {
-    insertBeforeCell(nextCellId, 'code');
+    insertAfterCell(prevCellId, 'code');
   }
 
   const handleClickMarkdown = (event: React.MouseEvent<HTMLButtonElement>) => {
-    insertBeforeCell(nextCellId, 'markdown');
+    insertAfterCell(prevCellId, 'markdown');
   } 
 
   return (

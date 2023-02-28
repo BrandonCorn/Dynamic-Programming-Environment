@@ -9,21 +9,22 @@ export const store = createStore(reducers, composeWithDevTools(applyMiddleware(t
 export type RootState = ReturnType<typeof store.getState>
 
 
-store.dispatch({
-  type: CellActionTypes.INSERT_CELL_BEFORE,
-  payload: {
-    id: null,
-    type: 'code'
-  }
-})
+// store.dispatch({
+//   type: CellActionTypes.INSERT_CELL_AFTER,
+//   payload: {
+//     id: null,
+//     type: 'code'
+//   }
+// });
+// store.dispatch({
+//   type: CellActionTypes.INSERT_CELL_AFTER,
+//   payload: {
+//     id: null,
+//     type: 'markdown'
+//   }
+// });
 
-store.dispatch({
-  type: CellActionTypes.INSERT_CELL_BEFORE,
-  payload: {
-    id: null,
-    type: 'markdown'
-  }
-})
+
 
 
 console.log('store ', store.getState());
