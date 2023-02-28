@@ -29,7 +29,7 @@ const bundleComplete = (state: IBundleState, action: BundleCellCompleteAction) =
 }
 
 const reducer = produce((state = initialState, action: BundleAction): IBundleState => {
-  const { cellId } = action.payload;
+  // const { cellId } = action.payload;
 
   switch(action.type){
     case BundleActionTypes.BUNDLE_START:
