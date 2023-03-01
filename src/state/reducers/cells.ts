@@ -57,7 +57,7 @@ const moveCell = (
   return state;
 }
 
-//create new cell in specific space of order list or else place at the end of the order list
+//create new cell after the one whose button was clicked
 const insertAfterCell = (
   state: ICellState,
   action: InsertCellAfterAction

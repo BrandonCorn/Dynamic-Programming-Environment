@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import CodeEditor from '../../molecules/CodeEditor/CodeEditor';
 import CodePreview from '../../atoms/IFrames/CodePreviewIFrame/CodePreviewIFrame';
-import bundle from '../../../helpers/esbuild';
 import Resizable from '../../atoms/Resizable/Resizable';
 import { ICell } from '../../../state/cell';
 import { useAction } from '../../../hooks/useAction';
+import { useTypedSelector } from '../../../hooks/useTypedSelector';
 
 interface ICodeCellProps {
   cell: ICell
@@ -12,26 +12,27 @@ interface ICodeCellProps {
 
 const CodeCell: React.FC<ICodeCellProps> = ({cell}) => {
   const { id, content } = cell;
-  const { updateCell } = useAction();
-  const [code, setCode] = useState('');
-  const [err, setErr] = useState('');
-
+  const { updateCell, createBundle } = useAction();
+  const bundle = useTypedSelector((state) => state.bundles[id]);
 
   const handleInput = (value:string) => {
     updateCell(id, value);
+    
   }
 
   useEffect(() => {
+    if (!bundle){
+      createBundle(id, content); 
+      return;
+    }
     const timer = setTimeout(async () => {
-      const bundledCode = await bundle(content);
-      setCode(bundledCode.code);
-      setErr(bundledCode.error);
-    }, 2000);
+      createBundle(id, content)
+    }, 750);
 
     return () => {
       clearTimeout(timer);
     }
-  }, [content])
+  }, [content, id, createBundle])
 
   return (
     <Resizable direction='vertical'>
@@ -42,7 +43,7 @@ const CodeCell: React.FC<ICodeCellProps> = ({cell}) => {
             onChange={handleInput}
           />
         </Resizable>
-          <CodePreview code={code} bundleStatus={err} />
+          {!!bundle ? <CodePreview code={bundle.code} bundleStatus={bundle.error} /> : '' }
       </div>
     </Resizable>
   )
