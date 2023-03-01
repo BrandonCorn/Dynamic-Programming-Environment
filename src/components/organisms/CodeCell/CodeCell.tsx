@@ -21,6 +21,10 @@ const CodeCell: React.FC<ICodeCellProps> = ({cell}) => {
   }
 
   useEffect(() => {
+    if (!bundle){
+      createBundle(id, content); 
+      return;
+    }
     const timer = setTimeout(async () => {
       createBundle(id, content)
     }, 750);
@@ -35,7 +39,7 @@ const CodeCell: React.FC<ICodeCellProps> = ({cell}) => {
       <div style={{height: '100%', display: 'flex', flexDirection: 'row'}}>
         <Resizable direction='horizontal'>
           <CodeEditor 
-            initialValue ={content || 'let hello = "world"'} 
+            initialValue ={content} 
             onChange={handleInput}
           />
         </Resizable>
