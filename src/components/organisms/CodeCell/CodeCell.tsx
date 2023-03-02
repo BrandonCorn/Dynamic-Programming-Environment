@@ -1,3 +1,4 @@
+import './code-cell.css';
 import { useEffect } from 'react';
 import CodeEditor from '../../molecules/CodeEditor/CodeEditor';
 import CodePreview from '../../atoms/IFrames/CodePreviewIFrame/CodePreviewIFrame';
@@ -32,7 +33,22 @@ const CodeCell: React.FC<ICodeCellProps> = ({cell}) => {
     return () => {
       clearTimeout(timer);
     }
-  }, [content, id, createBundle])
+  }, [content, id, createBundle]);
+
+  const renderPreviewOrLoad = !bundle || bundle.loading 
+    ? (
+      <div className = 'progress-main'>
+        <div className = 'progress-cover'> 
+          <progress className = 'progress is-success is-medium' max='100'> Loading </progress> 
+        </div>
+      </div> )
+    : ( <CodePreview code={bundle.code} bundleStatus={bundle.error} /> );
+
+  // const renderPreviewOrLoad = !bundle || bundle.loading 
+  // ? ( <CodePreview code={bundle.code} bundleStatus={bundle.error} /> )
+  // : (<div className = 'progress-cover'> <progress className = 'progress is-info is-large'> Loading </progress> </div> )
+   
+
 
   return (
     <Resizable direction='vertical'>
@@ -43,7 +59,7 @@ const CodeCell: React.FC<ICodeCellProps> = ({cell}) => {
             onChange={handleInput}
           />
         </Resizable>
-          {!!bundle ? <CodePreview code={bundle.code} bundleStatus={bundle.error} /> : '' }
+        {renderPreviewOrLoad}
       </div>
     </Resizable>
   )
