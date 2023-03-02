@@ -1,5 +1,6 @@
 import './code-cell.css';
 import { useEffect } from 'react';
+// import ReactDOM from 'react-dom';
 import CodeEditor from '../../molecules/CodeEditor/CodeEditor';
 import CodePreview from '../../atoms/IFrames/CodePreviewIFrame/CodePreviewIFrame';
 import Resizable from '../../atoms/Resizable/Resizable';
@@ -15,6 +16,32 @@ const CodeCell: React.FC<ICodeCellProps> = ({cell}) => {
   const { id, content } = cell;
   const { updateCell, createBundle } = useAction();
   const bundle = useTypedSelector((state) => state.bundles[id]);
+  
+  //gathers code from previous cells for reference when bundling
+  const cumulativeCode = useTypedSelector((state) => {
+    const { data, order } = state.cells;
+    let pattern = [ `${show}`];
+    for(let i = 0; id !== order[i]; i++){
+      if (data[order[i]].type === 'code') pattern.push(data[order[i]].content)
+    }
+    pattern.push(cell.content);
+    return pattern;
+  });
+
+  //function declaration for use within cumulative code 
+  function show(value: any){
+    let root = document.querySelector('#root');
+    if (root) {
+      if (value.$$typeof && value.props){
+        //@ts-ignore ReactDOM will need to be imported within code cell by user
+        ReactDOM.render(value, root);
+      }
+      else if (typeof value === 'object') {
+        value = JSON.stringify(value);
+        root.innerHTML = value;
+      }
+    }
+  }
 
   const handleInput = (value:string) => {
     updateCell(id, value);
@@ -23,11 +50,11 @@ const CodeCell: React.FC<ICodeCellProps> = ({cell}) => {
 
   useEffect(() => {
     if (!bundle){
-      createBundle(id, content); 
+      createBundle(id, cumulativeCode.join('\n')); 
       return;
     }
     const timer = setTimeout(async () => {
-      createBundle(id, content)
+      createBundle(id, cumulativeCode.join('\n'))
     }, 750);
 
     return () => {

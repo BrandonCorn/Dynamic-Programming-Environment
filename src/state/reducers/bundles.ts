@@ -34,20 +34,9 @@ const reducer = produce((state = initialState, action: BundleAction): IBundleSta
   switch(action.type){
     case BundleActionTypes.BUNDLE_START:
       bundleStart(state, action);
-      // state[cellId] = {
-      //   loading: true,
-      //   code: '',
-      //   error: '',
-      // }
       return state;
     case BundleActionTypes.BUNDLE_COMPLETE:
       bundleComplete(state, action);
-      // const { bundle } = action.payload;
-      // state[cellId] = {
-      //   loading: false,
-      //   code: bundle.code,
-      //   error: bundle.error,
-      // }
       return state;
     default: 
       return state;
