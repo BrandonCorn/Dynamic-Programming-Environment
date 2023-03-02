@@ -7,6 +7,7 @@ import Resizable from '../../atoms/Resizable/Resizable';
 import { ICell } from '../../../state/cell';
 import { useAction } from '../../../hooks/useAction';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
+import { useCumulativeCode } from '../../../hooks/useCumulativeCode';
 
 interface ICodeCellProps {
   cell: ICell
@@ -16,32 +17,8 @@ const CodeCell: React.FC<ICodeCellProps> = ({cell}) => {
   const { id, content } = cell;
   const { updateCell, createBundle } = useAction();
   const bundle = useTypedSelector((state) => state.bundles[id]);
+  const cumulativeCode = useCumulativeCode(cell);
   
-  //gathers code from previous cells for reference when bundling
-  const cumulativeCode = useTypedSelector((state) => {
-    const { data, order } = state.cells;
-    let pattern = [ `${show}`];
-    for(let i = 0; id !== order[i]; i++){
-      if (data[order[i]].type === 'code') pattern.push(data[order[i]].content)
-    }
-    pattern.push(cell.content);
-    return pattern;
-  });
-
-  //function declaration for use within cumulative code 
-  function show(value: any){
-    let root = document.querySelector('#root');
-    if (root) {
-      if (value.$$typeof && value.props){
-        //@ts-ignore ReactDOM will need to be imported within code cell by user
-        ReactDOM.render(value, root);
-      }
-      else if (typeof value === 'object') {
-        value = JSON.stringify(value);
-        root.innerHTML = value;
-      }
-    }
-  }
 
   const handleInput = (value:string) => {
     updateCell(id, value);
