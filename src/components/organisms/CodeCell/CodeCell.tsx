@@ -35,13 +35,18 @@ const CodeCell: React.FC<ICodeCellProps> = ({cell}) => {
     }
   }, [content, id, createBundle]);
 
-  // const renderPreviewOrLoad = !bundle || bundle.loading 
-  //   ? (<div> <progress className = 'progress-cover progress is-success is-medium' max='100'> Loading </progress> </div> )
-  //   : ( <CodePreview code={bundle.code} bundleStatus={bundle.error} /> );
-
   const renderPreviewOrLoad = !bundle || bundle.loading 
-  ? ( <CodePreview code={bundle.code} bundleStatus={bundle.error} /> )
-  : (<div className = 'progress-cover'> <progress className = 'progress is-info is-large'> Loading </progress> </div> )
+    ? (
+      <div className = 'progress-main'>
+        <div className = 'progress-cover'> 
+          <progress className = 'progress is-success is-medium' max='100'> Loading </progress> 
+        </div>
+      </div> )
+    : ( <CodePreview code={bundle.code} bundleStatus={bundle.error} /> );
+
+  // const renderPreviewOrLoad = !bundle || bundle.loading 
+  // ? ( <CodePreview code={bundle.code} bundleStatus={bundle.error} /> )
+  // : (<div className = 'progress-cover'> <progress className = 'progress is-info is-large'> Loading </progress> </div> )
    
 
 
