@@ -1,4 +1,5 @@
 import '../../molecules/AddCell/add-cell.css'
+import './cell-list.css';
 import { useEffect, Fragment } from 'react';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import CellListItem from '../../molecules/CellListItem/CellListItem';
@@ -23,7 +24,7 @@ const CellList: React.FC = () => {
   
 
   return (
-    <div>
+    <div className = 'cell-list'>
       <div className = {cellState.length === 0 ? 'is-visible' : 'lasjdflkjsdfl'}>
         <AddCell prevCellId={null} />
       </div>

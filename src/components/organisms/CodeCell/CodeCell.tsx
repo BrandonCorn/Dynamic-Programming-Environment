@@ -1,11 +1,13 @@
 import './code-cell.css';
 import { useEffect } from 'react';
+// import ReactDOM from 'react-dom';
 import CodeEditor from '../../molecules/CodeEditor/CodeEditor';
 import CodePreview from '../../atoms/IFrames/CodePreviewIFrame/CodePreviewIFrame';
 import Resizable from '../../atoms/Resizable/Resizable';
 import { ICell } from '../../../state/cell';
 import { useAction } from '../../../hooks/useAction';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
+import { useCumulativeCode } from '../../../hooks/useCumulativeCode';
 
 interface ICodeCellProps {
   cell: ICell
@@ -15,6 +17,8 @@ const CodeCell: React.FC<ICodeCellProps> = ({cell}) => {
   const { id, content } = cell;
   const { updateCell, createBundle } = useAction();
   const bundle = useTypedSelector((state) => state.bundles[id]);
+  const cumulativeCode = useCumulativeCode(cell);
+  
 
   const handleInput = (value:string) => {
     updateCell(id, value);
@@ -23,17 +27,18 @@ const CodeCell: React.FC<ICodeCellProps> = ({cell}) => {
 
   useEffect(() => {
     if (!bundle){
-      createBundle(id, content); 
+      createBundle(id, cumulativeCode); 
       return;
     }
     const timer = setTimeout(async () => {
-      createBundle(id, content)
+      createBundle(id, cumulativeCode)
     }, 750);
 
     return () => {
       clearTimeout(timer);
     }
-  }, [content, id, createBundle]);
+  }, [cumulativeCode, id, createBundle]);
+
 
   const renderPreviewOrLoad = !bundle || bundle.loading 
     ? (
@@ -43,11 +48,6 @@ const CodeCell: React.FC<ICodeCellProps> = ({cell}) => {
         </div>
       </div> )
     : ( <CodePreview code={bundle.code} bundleStatus={bundle.error} /> );
-
-  // const renderPreviewOrLoad = !bundle || bundle.loading 
-  // ? ( <CodePreview code={bundle.code} bundleStatus={bundle.error} /> )
-  // : (<div className = 'progress-cover'> <progress className = 'progress is-info is-large'> Loading </progress> </div> )
-   
 
 
   return (
