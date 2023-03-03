@@ -9,7 +9,6 @@
   "license": "ISC",
   "dependencies": {
     "commander": "7.0.0",
-    "local-api": "^1.0.0",
-    "undefined": "/Users/corn_brandon/Documents/coding-courses/typescript-react/dynamic-programming-env/dynamic_prog_env/packages/cli"
+    "local-api": "^1.0.0"
   }
 }
