@@ -27,6 +27,6 @@ export const useCumulativeCode = (cell: ICell) => {
       if (data[order[i]].type === 'code') pattern.push(data[order[i]].content)
     }
     if (cell.type === 'code') pattern.push(cell.content);
-    return pattern;
+    return pattern.join('\n');
   });
 }

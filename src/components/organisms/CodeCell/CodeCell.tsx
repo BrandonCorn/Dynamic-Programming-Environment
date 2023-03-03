@@ -27,17 +27,18 @@ const CodeCell: React.FC<ICodeCellProps> = ({cell}) => {
 
   useEffect(() => {
     if (!bundle){
-      createBundle(id, cumulativeCode.join('\n')); 
+      createBundle(id, cumulativeCode); 
       return;
     }
     const timer = setTimeout(async () => {
-      createBundle(id, cumulativeCode.join('\n'))
+      createBundle(id, cumulativeCode)
     }, 750);
 
     return () => {
       clearTimeout(timer);
     }
-  }, [content, id, createBundle]);
+  }, [cumulativeCode, id, createBundle]);
+
 
   const renderPreviewOrLoad = !bundle || bundle.loading 
     ? (
@@ -47,11 +48,6 @@ const CodeCell: React.FC<ICodeCellProps> = ({cell}) => {
         </div>
       </div> )
     : ( <CodePreview code={bundle.code} bundleStatus={bundle.error} /> );
-
-  // const renderPreviewOrLoad = !bundle || bundle.loading 
-  // ? ( <CodePreview code={bundle.code} bundleStatus={bundle.error} /> )
-  // : (<div className = 'progress-cover'> <progress className = 'progress is-info is-large'> Loading </progress> </div> )
-   
 
 
   return (
